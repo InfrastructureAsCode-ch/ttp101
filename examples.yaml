@@ -1,0 +1,88 @@
+arp:
+  data: |
+    Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+    Internet  10.18.8.1              43   0000.0c9f.f13d  ARPA   GigabitEthernet6
+    Internet  10.18.8.2               5   002a.6af5.53c1  ARPA   GigabitEthernet6
+    Internet  10.18.8.3               0   002a.6af1.7d81  ARPA   GigabitEthernet6
+    Internet  10.18.8.41            152   5254.00fd.7dba  ARPA   GigabitEthernet6
+    Internet  10.18.8.42             85   5254.0006.3e59  ARPA   GigabitEthernet6
+    Internet  10.18.8.43            104   5254.00a6.d787  ARPA   GigabitEthernet6
+  template: |
+    <group method="table" to_int="age">
+    {{ protocol }} {{ ip | IP }} {{ age | replace("-", "-1") }} {{ mac | mac_eui }} {{ type | let("interface", "Uncknown") }}    
+    {{ protocol }} {{ ip | IP }} {{ age | replace("-", "-1") }} {{ mac | mac_eui }} {{ type }} {{ interface | resuball("short_interface_names") }}
+    </group>
+
+interface running config:
+  data: |
+    interface FastEthernet0/1
+     description cat
+     ip address 192.168.1.1 255.255.255.0
+     duplex auto
+     speed auto
+    !
+    interface FastEthernet1/0
+     ip address 192.168.3.1 255.255.255.0
+     duplex auto
+     speed auto
+    !
+    interface FastEthernet2/0
+     no ip address
+     duplex auto
+     speed auto
+    !
+    interface FastEthernet3/0
+    !
+  template: |
+    <group name="interfaces.{{interface}}">
+    interface {{ interface }}
+    {{ mode | set(None) }}
+    {{ disabled | set(False) }}
+    {{ ip | set(None) }}
+    {{ description | set(None) }}
+    {{ dot1q | set(None) }}
+    {{ ip | set(None) }}
+    {{ mask | set(None) }}
+    {{ vrf | set(None) }}
+    {{ negotiation | set(None) }}
+    {{ speed | set(None) }}
+    {{ duplex | set(None) }}
+    {{ vlan | set(None) }}
+    {{ ip_directed_broadcast | set(None) }}
+    {{ input_mac_acl | set(None) }}
+    {{ output_mac_acl | set(None) }}
+    {{ input_policy | set(None) }}
+    switchport mode {{ mode }}
+    switchport trunk allowed vlan {{ vlan | _start_ | unrange(rangechar='-', joinchar=',' ) | split(',') }}
+    switchport access vlan {{ vlan | _start_ }}
+    speed {{speed}}
+    duplex {{duplex}}
+    description {{ description | re(".+") }}
+    encapsulation dot1q {{ dot1q }}
+    ip address {{ ip }} {{ mask }}
+    ip vrf {{ vrf }}
+    vrf forwarding {{ vrf }}
+    shutdown {{ disabled | set(True) }}
+    negotiation {{ negation }}
+    ip directed-broadcast {{ ip_directed_broadcast | set(True) }}
+    mac access-group {{ input_mac_acl }} in
+    mac access-group {{ output_mac_acl }} out
+    service-policy input {{ input_policy }}
+    <group name="service_instance.{{id}}">
+    {{ pop | set(None) }}
+    {{ symmetric | set(False) }}
+    {{ input_policy | set(None) }}
+    {{ output_policy | set(None) }}
+    service instance {{ id | record(id) }} ethernet
+      description {{ description }}
+      <group name="encapsulation">
+      encapsulation dot1q {{ vlan | _start_ }} second-dot1q {{ second_vlan }}
+      encapsulation {{ vlan | _start_ }}
+      encapsulation dot1q {{ vlan | _start_ }}
+      </group>
+      rewrite ingress tag pop {{ pop }} {{ symmetric }}
+      service-policy input {{ input_policy }}
+      service-policy output {{ output_policy }}
+      bridge-domain {{ bdomain }}
+    </group>
+    </group>
