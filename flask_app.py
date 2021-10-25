@@ -3,12 +3,14 @@ from flask import Flask, render_template, request, Response, url_for, jsonify
 from ttp import ttp
 
 app = Flask(__name__, static_url_path="/static")
-app.config['JSON_SORT_KEYS'] = False
+app.config["JSON_SORT_KEYS"] = False
+
+config = {"name": "TTP", "data": "RAW", "rendered": "JSON"}
 
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", **config)
 
 
 @app.route("/examples")
@@ -33,7 +35,7 @@ def rend():
         return resp
     ttp_template = data.get("template", "")
     raw_data = data.get("data")
-    
+
     try:
         parser = ttp(data=raw_data, template=ttp_template)
         parser.parse()

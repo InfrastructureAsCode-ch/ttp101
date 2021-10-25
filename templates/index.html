@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <title>TTP101</title>
+    <title>{{config.name}}101</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
     <style>
@@ -31,8 +31,8 @@
 
 <body>
     <div class="jumbotron text-center">
-        <h1>TTP 101</h1>
-        <p>Playground for TTP templates</p>
+        <h1>{{name}} 101</h1>
+        <p>Playground for {{name}} templates</p>
     </div>
 
     <div id="alerts">
@@ -136,20 +136,20 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="form-group">
-                        <label for="textData">Data <small>RAW</small></label>
+                        <label for="textData">Data <small>{{data}}</small></label>
                         <textarea class="form-control show-spaces" id="textData" name="data" rows="20"></textarea>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
-                        <label for="textTemplate">Template <small>TTP</small></label>
+                        <label for="textTemplate">Template <small>{{name}}</small></label>
                         <textarea class="form-control show-spaces" id="textTemplate" name="template"
                             rows="20"></textarea>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
-                        <label for="textRendered" disabled>Rendered <small>JSON</small></label>
+                        <label for="textRendered" disabled>Rendered <small>{{rendered}}</small></label>
                         <textarea class="form-control show-spaces" id="textRendered" rows="20" disabled></textarea>
                     </div>
                 </div>
