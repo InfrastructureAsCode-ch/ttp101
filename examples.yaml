@@ -52,28 +52,28 @@ interface running config:
     {{ input_mac_acl | set(None) }}
     {{ output_mac_acl | set(None) }}
     {{ input_policy | set(None) }}
-    switchport mode {{ mode }}
-    switchport trunk allowed vlan {{ vlan | _start_ | unrange(rangechar='-', joinchar=',' ) | split(',') }}
-    switchport access vlan {{ vlan | _start_ }}
-    speed {{speed}}
-    duplex {{duplex}}
-    description {{ description | re(".+") }}
-    encapsulation dot1q {{ dot1q }}
-    ip address {{ ip }} {{ mask }}
-    ip vrf {{ vrf }}
-    vrf forwarding {{ vrf }}
-    shutdown {{ disabled | set(True) }}
-    negotiation {{ negation }}
-    ip directed-broadcast {{ ip_directed_broadcast | set(True) }}
-    mac access-group {{ input_mac_acl }} in
-    mac access-group {{ output_mac_acl }} out
-    service-policy input {{ input_policy }}
-    <group name="service_instance.{{id}}">
-    {{ pop | set(None) }}
-    {{ symmetric | set(False) }}
-    {{ input_policy | set(None) }}
-    {{ output_policy | set(None) }}
-    service instance {{ id | record(id) }} ethernet
+     switchport mode {{ mode }}
+     switchport trunk allowed vlan {{ vlan | _start_ | unrange(rangechar='-', joinchar=',' ) | split(',') }}
+     switchport access vlan {{ vlan | _start_ }}
+     speed {{speed}}
+     duplex {{duplex}}
+     description {{ description | re(".+") }}
+     encapsulation dot1q {{ dot1q }}
+     ip address {{ ip }} {{ mask }}
+     ip vrf {{ vrf }}
+     vrf forwarding {{ vrf }}
+     shutdown {{ disabled | set(True) }}
+     negotiation {{ negation }}
+     ip directed-broadcast {{ ip_directed_broadcast | set(True) }}
+     mac access-group {{ input_mac_acl }} in
+     mac access-group {{ output_mac_acl }} out
+     service-policy input {{ input_policy }}
+     <group name="service_instance.{{id}}">
+     {{ pop | set(None) }}
+     {{ symmetric | set(False) }}
+     {{ input_policy | set(None) }}
+     {{ output_policy | set(None) }}
+     service instance {{ id | record(id) }} ethernet
       description {{ description }}
       <group name="encapsulation">
       encapsulation dot1q {{ vlan | _start_ }} second-dot1q {{ second_vlan }}
@@ -84,5 +84,5 @@ interface running config:
       service-policy input {{ input_policy }}
       service-policy output {{ output_policy }}
       bridge-domain {{ bdomain }}
-    </group>
+     </group>
     </group>
