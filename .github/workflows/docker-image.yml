@@ -43,6 +43,6 @@ jobs:
         file: ./Dockerfile
         builder: ${{ steps.buildx.outputs.name }}
         push: true
-        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/ttp101:latest
+        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/ttp101:${{ env.tag_name }}
         cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/ttp101:buildcache
         cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/ttp101:buildcache,mode=max
