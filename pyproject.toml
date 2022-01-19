@@ -1,20 +1,20 @@
 [tool.poetry]
 name = "ttp101"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["ubaumann <github@m.ubaumann.ch>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
 flask = "^2.0.1"
-pyaml = "^20.4.0"
+pyaml = "^21.10.1"
 gunicorn = "^20.1.0"
-ttp = "^0.8.1"
+ttp = "^0.8.4"
 
 [tool.poetry.dev-dependencies]
-black = "^21.6b0"
-pylama = "^7.7.1"
-rich = "^10.12.0"
+black = "^21.12b0"
+pylama = "^8.3.7"
+rich = "^11.0.0"
 
 [build-system]
 requires = ["poetry>=0.12"]
