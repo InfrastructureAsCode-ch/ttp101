@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <title>{{name}}101</title>
+    <title>{{ config.TITLE }}</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
     <style>
@@ -26,155 +26,250 @@
         .show-spaces {
             font-family: CourierDotSpace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
         }
+
+        @media (min-width: 768px) {
+            .container {
+                width: 750px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                width: 850px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                width: 850px;
+            }
+        }
+
+
+        /* copied from infrastructureascode.ch */
+        body {
+            color: #4b505a;
+            background-color: #f5f5f5;
+            line-height: 24px;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        h1 {
+            font-size: 28px;
+            line-height: 1.285714285714286em;
+            font-weight: 600;
+            letter-spacing: 2px;
+            border: none;
+        }
+
+        a.navigate {
+            background-color: rgba(0, 0, 0, 0.5);
+            font-size: 12px;
+            padding-left: 4px;
+            padding-right: 4px;
+            min-width: 100px;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Navbar */
+        .header-nav {
+            height: 100px;
+            line-height: 100px;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .header-nav .nav a {
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+            padding: 8px;
+            margin-left: 20px;
+            text-transform: uppercase;
+            transition: all 0.2s ease-out;
+        }
+
+        .header-nav .nav a:hover {
+            color: #fff;
+            font-weight: 600;
+            opacity: 1;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .header-nav .nav .active {
+            color: #fff;
+            font-weight: 600;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .header-logo {
+            font-size: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .header-logo a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Header */
+
+        .header-container {
+            background: #f5f5f5;
+            padding: 0;
+            /* min-height: 360px; */
+        }
+
+        .header-wrapper {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        .header-content {
+            text-align: center;
+            padding: 25px 0 55px 0;
+        }
+
+        .header-title {
+            font-size: 28px;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .header-date {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #fff;
+            opacity: 0.8;
+
+        }
+
+        .header-date a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .header-underline {
+            display: inline-block;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            width: 50px;
+            border-bottom: 3px solid #eb2344;
+        }
+
+        .header-subtitle {
+            font-size: 14px;
+            line-height: 24px;
+            color: #fff;
+            font-weight: 300;
+            text-align: justify;
+        }
+
+        .header-subtitle-homepage {
+            text-align: center;
+            font-style: italic;
+        }
+
+        .header-tags {
+            font-size: 11px;
+            color: #fff;
+            font-style: italic;
+        }
+
+        .header-tags a {
+            color: #fff;
+        }
+
+        .mr20 {
+            margin-right: 20px;
+        }
+
+        .mt20 {
+            margin-top: 20px;
+        }
+
+
+        /* Footer */
+
+        .footer {
+            background-color: #333;
+            font-size: 14px;
+            font-weight: 300;
+            text-align: left;
+            color: #fff;
+        }
+
+        .footer-title {
+            text-transform: uppercase;
+            margin-bottom: 3px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .footer-container {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .footer a {
+            color: #fff;
+        }
+
+        .header-container {
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("{{ url_for('static', filename='background.jpg') }}");
+            background-position: center;
+            background-size: cover;
+        }
     </style>
 </head>
 
 <body>
-    <div class="jumbotron text-center">
-        <h1>{{name}} 101</h1>
-        <p>Playground for {{name}} templates</p>
+    <div class="header-container">
+
+        <div class="container">
+            <div class="header-nav">
+                <div class="row">
+
+                    <div class="col-auto mr-auto header-logo">
+                        <a class="pull-left" href="https://infrastructureascode.ch/"><img class="mr20"
+                            src="https://infrastructureascode.ch/logo.svg" alt="logo">Infrastructure as Code</a>
+                    </div>
+                    <div class="col-auto nav pull-right">
+                        <a href="https://infrastructureascode.ch/pages/tools.html">Tools</a>
+                    </div>
+                    </div>
+                </div>
+        </div>
+        <!-- /Static navbar -->
+
+        <!-- Header -->
+        <div class="container header-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="header-content">
+                        <h1 class="header-title">{{ config.TITLE }}</h1>
+                        <div class="header-underline"></div>
+                        <p class="header-subtitle header-subtitle-homepage">{{ config.SUBTITLE }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Header -->
+
     </div>
 
     <div id="alerts">
 
     </div>
 
-    <div class="container-fluid">
-        <form id="templateForm" method="POST" action="rend">
-            <!--<div class="row">
-                <div class="col">
-                    <p>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse"
-                            data-target="#environmentSettings" aria-expanded="false"
-                            aria-controls="environmentSettings">
-                            Environment Settings
-                        </button>
-                    </p>
-                    <div class="collapse" id="environmentSettings">
-                        <p>
-                        <div class="card card-body">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="trim_blocks" name="trim_blocks">
-                                <label class="form-check-label" for="trim_blocks">trim_blocks</label>
-                                <small id="trimHelp" class="form-text text-muted">If this is set to True the first
-                                    newline after a block is removed (block, not variable tag!). Defaults to
-                                    False.</small>
-                            </div>
-
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="lstrip_blocks" name="lstrip_blocks">
-                                <label class="form-check-label" for="lstrip_blocks">lstrip_blocks</label>
-                                <small id="lstripHelp" class="form-text text-muted">If this is set to True leading
-                                    spaces and tabs are stripped from the start of a line to a block. Defaults to
-                                    False.</small>
-                            </div>
-
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="keep_trailing_newline"
-                                    name="keep_trailing_newline">
-                                <label class="form-check-label"
-                                    for="keep_trailing_newline">keep_trailing_newline</label>
-                                <small id="trailingHelp" class="form-text text-muted">Preserve the trailing newline
-                                    when
-                                    rendering templates. The default is False, which causes a single newline, if
-                                    present, to be stripped from the end of the template.</small>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="newline_sequence">newline_sequence</label>
-                                <input type="text" class="form-control" id="newline_sequence"
-                                    aria-describedby="newlineHelp" placeholder="\n" value="\n" name="newline_sequence">
-                                <small id="newlineHelp" class="form-text text-muted">The sequence that starts a
-                                    newline.
-                                    Must be one of '\r', '\n' or '\r\n'. The default is '\n' which is a useful
-                                    default
-                                    for Linux and OS X systems as well as web applications.</small>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="mr-sm-2" for="undefined">Extensions</label>
-                                <select class="custom-select" id="extensions" name="extensions" multiple>
-                                    <option value="jinja2.ext.i18n">i18n</option>
-                                    <option value="jinja2.ext.do">do</option>
-                                    <option value="jinja2.ext.loopcontrols">loopcontrols</option>
-                                    <option value="jinja2.ext.debug">debug</option>
-                                </select>
-                                <small id="extensionsHelp" class="form-text text-muted">List of Jinja extensions to
-                                    use.
-                                    This can either be import paths as strings or extension classes. For more
-                                    information have a look at the extensions documentation.</small>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="mr-sm-2" for="undefined">Undefined</label>
-                                <select class="custom-select" id="undefined" name="undefined">
-                                    <option value="jinja2.Undefined">Undefined</option>
-                                    <option value="jinja2.ChainableUndefined">ChainableUndefined</option>
-                                    <option value="jinja2.DebugUndefined">DebugUndefined</option>
-                                    <option value="jinja2.StrictUndefined">StrictUndefined</option>
-                                </select>
-                                <small id="undefinedHelp" class="form-text text-muted">Undefined or a subclass of it
-                                    that is used to represent undefined values in the template</small>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="mr-sm-2" for="filter">Filter</label>
-                                <select class="custom-select" id="filter" name="filter">
-                                    <option value="default">Default (Built-in)</option>
-                                    <option value="ansible">Ansible</option>
-                                    <option value="salt">SaltStack</option>
-                                    <option value="st2">StackStorm</option>
-                                </select>
-                                <small id="filterHelp" class="form-text text-muted">Filter imported from tools</small>
-                            </div>
-
-                        </div>
-                        </p>
-                    </div>
-                </div>
-            </div>-->
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label for="textData">Data <small>{{data}}</small></label>
-                        <textarea class="form-control show-spaces" id="textData" name="data" rows="20"></textarea>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label for="textTemplate">Template <small>{{name}}</small></label>
-                        <textarea class="form-control show-spaces" id="textTemplate" name="template"
-                            rows="20"></textarea>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label for="textRendered" disabled>Rendered <small>{{rendered}}</small></label>
-                        <textarea class="form-control show-spaces" id="textRendered" rows="20" disabled></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-auto">
-                    <div>
-                        <button class="btn btn-primary" type="submit">
-                            Render Template
-                        </button>
-                    </div>
-                </div>
-                <div class="col-auto mr-auto ">
-                    <div class="dropdown">
-                        <button id="examples" class="btn btn-primary dropdown-toggle" type="button"
-                            data-toggle="dropdown">Examples
-                            <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                        </ul>
-                    </div>
-                </div>
-            </div>
-    </div>
-    </form>
-    </div>
+{% include "form.html" %}
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -253,7 +348,7 @@
                     success: function (data, textStatus, jQxhr) {
                         $(".dropdown-menu").html('');
                         exampleMap = new Map()
-                        $.each(data, function(key, value) {
+                        $.each(data, function (key, value) {
                             exampleMap.set(key, value)
                             $(".dropdown-menu").append('<li><a href="#" onclick="updateForm(\'' + key + '\')">' + key + '</a></li>');
                         });
@@ -272,6 +367,27 @@
         });
 
     </script>
+
+    <!-- Footer -->
+    <div class="footer gradient-2 mt20">
+        <div class="container footer-container">
+            <div class="row">
+                <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                    <a href="{{ config.GITHUB }}">GitHub Repository</a>
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                </div>
+                <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <p class="pull-right text-right">
+                        <small>&copy; <a href="https://infrastructureascode.ch">infrastructureascode.ch</a></small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Footer -->
 </body>
 
 </html>

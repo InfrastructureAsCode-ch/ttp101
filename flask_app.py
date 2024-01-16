@@ -3,10 +3,14 @@ from flask import Flask, render_template, request, Response, url_for, jsonify
 from ttp import ttp
 
 app = Flask(__name__, static_url_path="/static")
-app.config["JSON_SORT_KEYS"] = False
-
 config = {"name": "TTP", "data": "RAW", "rendered": "JSON"}
-
+app.json.sort_keys = False
+app.config.update(
+    TITLE="TTP",
+    SUBTITLE="Playground for TTP templates",
+    GITHUB="https://github.com/infrastructureAsCode-ch/ttp101/",
+    
+)
 
 @app.route("/")
 def index():

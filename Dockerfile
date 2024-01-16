@@ -1,17 +1,18 @@
 ARG PYTHON
-FROM python:3.8
+FROM python:3.10
 
 WORKDIR /playground
 RUN useradd -m iac
 
-ENV PATH="/root/.poetry/bin:$PATH" \
+ENV PATH="/root/.local/bin:$PATH" \
     PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+    PYTHONUNBUFFERED=1 \
+    TTPCACHEFOLDER=/tmp/
 
 
 RUN apt-get update && apt-get install curl -y \
     && rm -rf /var/lib/apt/lists/* \
-    && curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python \
+    && curl -sSL https://install.python-poetry.org | python3 \
     && poetry config virtualenvs.create false
 
 COPY --chown=iac:iac pyproject.toml .
