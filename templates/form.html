@@ -1,22 +1,23 @@
 <div class="container-fluid">
     <form id="templateForm" method="POST" action="rend">
+
         <div class="row">
             <div class="col-lg-4">
                 <div class="form-group">
-                    <label for="textData">Data <small>{{data}}</small></label>
+                    <label for="textData">Data <small>{{config.data_textarea}}</small></label>
                     <textarea class="form-control show-spaces" id="textData" name="data" rows="20"></textarea>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="form-group">
-                    <label for="textTemplate">Template <small>{{name}}</small></label>
+                    <label for="textTemplate">Template <small>{{config.template_textarea}}</small></label>
                     <textarea class="form-control show-spaces" id="textTemplate" name="template"
                         rows="20"></textarea>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="form-group">
-                    <label for="textRendered" disabled>Rendered <small>{{rendered}}</small></label>
+                    <label for="textRendered" disabled>Rendered <small>{{config.rendered_textarea}}</small></label>
                     <textarea class="form-control show-spaces" id="textRendered" rows="20" disabled></textarea>
                 </div>
             </div>
