@@ -12,7 +12,7 @@ gunicorn = "^22"
 ttp = "^0.9"
 
 [tool.poetry.dev-dependencies]
-black = "^23"
+black = "^24"
 pylama = "^8"
 rich = "^13"
 
